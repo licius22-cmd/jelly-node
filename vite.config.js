@@ -1,11 +1,8 @@
 import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react-swc';
 
 export default defineConfig({
-  plugins: [react()],
-  root: '.',
+  plugins: [], // <-- É exatamente dessa linha vazia que a Cloudflare precisa
   build: {
     outDir: 'dist',
-  },
+  }
 });
-

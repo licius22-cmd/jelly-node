@@ -1,0 +1,28 @@
+# Configuração Global para todos os arquivos
+/*
+  # Força o cache no navegador e na rede Edge da Cloudflare por 1 ano
+  Cache-Control: public, max-age=31536000, s-maxage=31536000, stale-while-revalidate=604800
+  
+  # Segurança e Performance extra
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: no-referrer-when-downgrade
+  X-Frame-Options: SAMEORIGIN
+  Permissions-Policy: interest-cohort=()
+
+# Otimização específica para páginas HTML (suas Landing Pages)
+/*.html
+  # s-maxage=31536000 mantém o HTML no datacenter da Cloudflare (EUA/UK/CA/AU/NZ)
+  # max-age=3600 permite que o navegador do usuário revalide a cada 1 hora se houver mudanças
+  Cache-Control: public, max-age=3600, s-maxage=31536000, stale-while-revalidate=86400, stale-if-error=86400
+
+# Cache agressivo para Assets (Imagens, CSS, JS)
+/assets/*
+  Cache-Control: public, max-age=31536000, s-maxage=31536000, immutable
+
+# Se você usa imagens fora da pasta assets
+/*.jpg
+  Cache-Control: public, max-age=31536000, s-maxage=31536000, immutable
+/*.png
+  Cache-Control: public, max-age=31536000, s-maxage=31536000, immutable
+/*.webp
+  Cache-Control: public, max-age=31536000, s-maxage=31536000, immutable
